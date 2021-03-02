@@ -79,4 +79,27 @@ public class DobleLinkedList {
 
     }
 
+    public void deletePrepend(){
+
+        Nodo newBeginning;
+
+        beginning.setFirstName(null);
+        beginning.setLastName(null);
+        beginning.setAge(null);
+        newBeginning = beginning.getNext();
+        beginning = newBeginning;
+        beginning.setBehind(null);
+
+        length--;
+
+    }
+
+    public void deleteAppend(){
+        Nodo aux;
+        aux = end.getBehind();
+        end.setBehind(null);
+        end = aux;
+        length--;
+    }
+
 }
