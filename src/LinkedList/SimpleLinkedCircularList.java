@@ -17,7 +17,7 @@ public class SimpleLinkedCircularList {
         }
 
         newNodo.setNext(beginning);
-
+        getInformation(newNodo);
         length++;
     }
 
@@ -30,7 +30,7 @@ public class SimpleLinkedCircularList {
         newNodo.setNext(beginning);
         beginning = newNodo;
         end.setNext(beginning);
-
+        getInformation(beginning);
         length++;
 
     }
@@ -45,6 +45,7 @@ public class SimpleLinkedCircularList {
         newNodo.setNext(beginning);
         aux.setNext(newNodo);
         end = newNodo;
+        getInformation(end);
         length++;
 
     }
@@ -55,11 +56,9 @@ public class SimpleLinkedCircularList {
         int i = 0;
 
         if(length > 0){
-            System.out.println(aux.getAge()+" " + aux);
             while (i != length){
-                System.out.println("nodo anterior " + aux.getBehind() + " nodo actual " + aux + " nodo siguiente " + aux.getNext());
+                System.out.println(aux  + " ⇄ " +  aux.getNext());
                 aux = aux.getNext();
-                System.out.println(aux.getAge()+" " + aux);
                 i++;
             }
         }else{
@@ -71,6 +70,7 @@ public class SimpleLinkedCircularList {
 
         Nodo aux;
         aux = beginning;
+        getInformation(aux);
         aux.setFirstName(null);
         aux.setLastName(null);
         aux.setAge(null);
@@ -85,11 +85,10 @@ public class SimpleLinkedCircularList {
         int i = 0;
         Nodo aux = beginning;
         Nodo auxEnd = end;
+        getInformation(auxEnd);
         if(length > 0){
             while (i != length  && aux.getNext() != end){
-                //System.out.println(aux);
                 aux = aux.getNext();
-                //System.out.println(aux);
                 i++;
             }
 
@@ -98,7 +97,9 @@ public class SimpleLinkedCircularList {
             auxEnd.setNext(null);
             length--;
         }
-
-      //  System.out.println(end.getNext());
+    }
+    public void getInformation(Nodo nodo){
+        System.out.print(" Direccion del nodo: " + nodo + " Primer nombre: " + nodo.getFirstName() + " Primer apellido: " + nodo.getLastName() + " Edad: " + nodo.getAge());
+        System.out.println();
     }
 }

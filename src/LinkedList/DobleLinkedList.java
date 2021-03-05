@@ -20,6 +20,7 @@ public class DobleLinkedList {
             length++;
         }
 
+        getInformation(newNode);
         return 1;
     }
 
@@ -37,24 +38,23 @@ public class DobleLinkedList {
 
         beginning = newNodo;
 
+        getInformation(beginning);
         length++;
     }
 
     public void insertAppend(){
         Nodo newNodo = new Nodo();
-        Nodo aux;
-        aux = end;
+        Nodo aux = end;
         newNodo.setFirstName("JUAN");
         newNodo.setLastName("HERNANDEZ");
         newNodo.setAge(90);
-        newNodo.setBehind(aux);
         newNodo.setNext(null);
-        aux.setNext(newNodo);
+        newNodo.setBehind(aux);
+        end = newNodo;
+        aux.setNext(end);
         length++;
 
-        System.out.println("Nuevo nodo");
-        System.out.println(aux);
-        System.out.println(newNodo);
+        getInformation(newNodo);
 
         return;
     }
@@ -68,11 +68,11 @@ public class DobleLinkedList {
         if(length >= 0 && newNodo.getNext() != null){
 
             while(i != length){
-                System.out.println("nodo anterior " + newNodo.getBehind() + " nodo actual " + newNodo + " nodo siguiente " + newNodo.getNext());
-                System.out.println(newNodo.getAge());
+                System.out.println(newNodo.getBehind() + " ⇄ " + newNodo  + " ⇄ " +  newNodo.getNext());
                 newNodo = newNodo.getNext();
                 i++;
             }
+
         }else{
             System.out.println(newNodo.getAge());
         }
@@ -81,13 +81,13 @@ public class DobleLinkedList {
 
     public void deletePrepend(){
 
-        Nodo newBeginning;
+        Nodo aux = beginning;
 
-        beginning.setFirstName(null);
-        beginning.setLastName(null);
-        beginning.setAge(null);
-        newBeginning = beginning.getNext();
-        beginning = newBeginning;
+        aux.setFirstName(null);
+        aux.setLastName(null);
+        aux.setAge(null);
+        getInformation(aux);
+        beginning = beginning.getNext();
         beginning.setBehind(null);
 
         length--;
@@ -97,9 +97,15 @@ public class DobleLinkedList {
     public void deleteAppend(){
         Nodo aux;
         aux = end.getBehind();
-        end.setBehind(null);
+        getInformation(aux);
         end = aux;
+        end.setNext(null);
         length--;
+    }
+
+    public void getInformation(Nodo nodo){
+        System.out.print(" Direccion del nodo: " + nodo + " Primer nombre: " + nodo.getFirstName() + " Primer apellido: " + nodo.getLastName() + " Edad: " + nodo.getAge());
+        System.out.println();
     }
 
 }

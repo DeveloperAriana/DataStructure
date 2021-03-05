@@ -5,7 +5,7 @@ public class DoubleLinkedCircularList {
     Nodo end;
     int length;
 
-    public void insertInVoidList(){
+    public Nodo insertInVoidList(){
         Nodo newNodo = new Nodo();
         newNodo.setFirstName("JODA");
         newNodo.setLastName("ORION");
@@ -19,12 +19,13 @@ public class DoubleLinkedCircularList {
         end.setNext(beginnig);
         beginnig.setBehind(end);
 
-        System.out.println(newNodo);
-
         length++;
+
+        getInformation(beginnig);
+        return beginnig;
     }
 
-    public void insertPrepend(){
+    public Nodo insertPrepend(){
 
         Nodo newNodo = new Nodo();
         newNodo.setFirstName("Alexandra");
@@ -43,9 +44,13 @@ public class DoubleLinkedCircularList {
         }
 
         length++;
+
+        getInformation(beginnig);
+
+        return beginnig;
     }
 
-    public void insertAppend(){
+    public Nodo insertAppend(){
 
         Nodo aux;
         aux = end;
@@ -61,6 +66,9 @@ public class DoubleLinkedCircularList {
 
         length++;
 
+        getInformation(end);
+        return end;
+
     }
 
     public void getValues(){
@@ -70,8 +78,7 @@ public class DoubleLinkedCircularList {
 
         if(length > 0){
             while (i != length){
-                System.out.println(aux.getAge());
-                System.out.println("nodo anterior " + aux.getBehind() + " nodo actual " + aux + " nodo siguiente " + aux.getNext());
+                System.out.println(aux.getBehind() + " ⇄ " + aux  + " ⇄ " +  aux.getNext());
                 aux = aux.getNext();
                 i++;
             }
@@ -80,9 +87,12 @@ public class DoubleLinkedCircularList {
         }
     }
 
-    public void deletePrepend(){
+    public Nodo deletePrepend(){
         Nodo aux;
         aux = beginnig;
+
+        getInformation(aux);
+
         beginnig = aux.getNext();
         aux.setFirstName(null);
         aux.setLastName(null);
@@ -91,16 +101,26 @@ public class DoubleLinkedCircularList {
         end.setNext(beginnig);
         beginnig.setBehind(end);
         length--;
+
+        return aux;
     }
 
-    public void deleteAppend(){
+    public Nodo deleteAppend(){
         Nodo aux = end;
+        getInformation(aux);
         end = end.getBehind();
         end.setNext(beginnig);
         aux.setBehind(null);
         aux.setNext(null);
         beginnig.setBehind(end);
         length--;
+
+        return aux;
+    }
+
+    public void getInformation(Nodo nodo){
+        System.out.print(" Direccion del nodo: " + nodo + " Primer nombre: " + nodo.getFirstName() + " Primer apellido: " + nodo.getLastName() + " Edad: " + nodo.getAge());
+        System.out.println();
     }
 
 }

@@ -13,6 +13,8 @@ public class SimpleLinkedList {
          newNode.setAge(21);
          newNode.setNext(beginning);
 
+         getInformation(newNode);
+
          if(beginning == null){
              beginning = newNode;
              end = newNode;
@@ -31,6 +33,8 @@ public class SimpleLinkedList {
          newNode.setNext(beginning);
          beginning = newNode;
 
+         getInformation(beginning);
+
          length++;
 
          return beginning;
@@ -45,7 +49,8 @@ public class SimpleLinkedList {
 
          newNode.setNext(null);
          end.setNext(newNode);
-
+         end = newNode;
+         getInformation(end);
          length++;
 
          return end;
@@ -59,8 +64,7 @@ public class SimpleLinkedList {
 
          if(beginning != null){
              while (i != length){
-                 System.out.println(nodeAux);
-                 System.out.println(nodeAux.getAge());
+                 System.out.println(nodeAux  + " ⇄ " +  nodeAux.getNext());
                  nodeAux = nodeAux.getNext();
                  i++;
              }
@@ -72,6 +76,7 @@ public class SimpleLinkedList {
      public int deletePrepend(){
          if(length > 0) {
              beginning = beginning.getNext();
+             getInformation(beginning);
              length--;
          }
 
@@ -83,7 +88,7 @@ public class SimpleLinkedList {
          int i = 0;
          Nodo newNode;
          newNode = beginning;
-
+         getInformation(end);
          while(i != length && newNode.getNext().getNext() != null){
              newNode = newNode.getNext();
              i++;
@@ -95,5 +100,10 @@ public class SimpleLinkedList {
 
          return 1;
      }
+
+    public void getInformation(Nodo nodo){
+        System.out.print(" Direccion del nodo: " + nodo + " Primer nombre: " + nodo.getFirstName() + " Primer apellido: " + nodo.getLastName() + " Edad: " + nodo.getAge());
+        System.out.println();
+    }
 
 }
